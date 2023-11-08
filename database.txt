@@ -1,0 +1,70 @@
+users
+------
+id int pk 
+username str unique
+password str
+active bool
+lastlogin date
+
+profiles
+--------
+id int pk
+name str?
+surname str?
+biography str?
+github str?
+facebook str?
+twitter str?
+instagram str?
+avatar str?
+users_id int fk - users.id
+
+articles
+--------
+id int pk
+title str unique
+slug str unique
+resume text?
+content text
+published bool default=false
+users_id int fk >- users.id
+
+categories
+---------
+id int pk
+name str unique
+
+
+categories_articles
+---------
+articles_id int pk fk >- articles.id
+categories_id int pk fk >- categories.id
+
+medias
+------
+id int pk
+filename str
+type str
+articles_id int fk >- articles.id
+
+
+comments
+--------
+id int pk
+comment text
+date date
+articles_id int fk >- articles.id
+users_id int fk >- users.id
+
+repplies
+--------
+id int pk
+comment text
+date date
+comments_id int fk >- comments.id
+users_id int fk >- users.id
+
+followers
+----------
+follower_id int pk fk >- users.id
+followed_id int pk fk >- users.id
